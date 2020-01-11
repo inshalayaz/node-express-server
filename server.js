@@ -14,7 +14,7 @@ ourApp.get('/', (req, res) => {
 })
 
 ourApp.post('/answer', function (req, res) {
-  if (req.body.skyColor == 'blue' || req.body.skyColor == 'Blue' ||req.body.skyColor == 'BLUE'  ){
+  if (req.body.skyColor.toUpperCase() == 'BLUE' ){
     res.send(`
         <p>Congrats thats the correct answer.</p>
         <a href = "/">Back to the home page</a>

@@ -1,5 +1,6 @@
 let express = require("express");
 let ourApp = express();
+ourApp.use(express.urlencoded({extended:false}));
 ourApp.get('/', (req, res) => {
   res.send(`
 
@@ -13,7 +14,17 @@ ourApp.get('/', (req, res) => {
 })
 
 ourApp.post('/answer', function (req, res) {
-  res.send('Thanks for submitting the answer')
+  if (req.body.skyColor == 'blue' || req.body.skyColor == 'Blue' ||req.body.skyColor == 'BLUE'  ){
+    res.send(`
+        <p>Congrats thats the correct answer.</p>
+        <a href = "/">Back to the home page</a>
+    `);
+  } else{
+    res.send(`
+    <p>Sorry thats the incorrect answer.</p>
+    <a href = "/">Back to the home page</a>
+    `);
+  }
 });
 
 ourApp.get('/answer', function (req, res) {
